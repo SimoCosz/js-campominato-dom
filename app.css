@@ -84,6 +84,15 @@ img{
   color: white;
 }
 
+.square-boom{
+  background-color: red;
+  border-left: 2px solid lightsalmon;
+  border-top: 2px solid lightsalmon;
+  border-right: 2px solid darkred;
+  border-bottom: 2px solid darkred;
+  color: white;
+}
+
 /* footer  */
 
 footer{

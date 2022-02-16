@@ -1,5 +1,5 @@
-// l'utente deve selezionare la dificoltà del gioco
-  // collegare il bottone alla scelta dell'utente
+// VARIABILI
+
 const play = document.getElementById('play');
 const easy = document.getElementById('easy').value;
 const hard = document.getElementById('hard').value;
@@ -33,10 +33,15 @@ function difficultyGrid(){
 }
 
 function cellaCallBack(){
-  this.classList.add('square-select');
-  let element = this.innerHTML
-  console.log(element)
+  let element = this.innerHTML;
+  if (numeroBombe.includes(parseInt(element))){
+    this.classList.add('square-boom');
+  } else {
+    this.classList.add('square-select');
+  }
+  console.dir(element)
   this.removeEventListener('click', cellaCallBack)
+  this.classList.remove('event')
 }
 
 function createSquareElement (){
@@ -48,6 +53,7 @@ function createSquareElement (){
     numero = i + 1;
     squareElement.append(numero);
     squareElement.addEventListener('click', cellaCallBack);
+    squareElement.classList.add('event')
   }
 }
 
@@ -60,17 +66,30 @@ function getRandomIntInclusive(min, max) {
 function createNumeroBombe(){
   numeroBombe = []
   while (numeroBombe.length < 16){
-    let numeroBomba = getRandomIntInclusive(1, Math.pow(numeroColonne, 2))
-    numeroBombe.push(numeroBomba)
+    let bomba = getRandomIntInclusive(1, Math.pow(numeroColonne, 2))
+    if (!numeroBombe.includes(bomba)){
+      numeroBombe.push(bomba)
+      console.log('bomba aggiunta')
+    } else {
+      console.log('bomba trovata')
+    }
   }
   console.log(numeroBombe)
 }
+
+function controlloBombe (){
+  // if (!numeroBombe.includes(element) )
+  
+} 
+
+// GAME
 
 function startGame(){
   difficultyGrid();
   grid.innerHTML='';
   createSquareElement();
   createNumeroBombe();
+  controlloBombe();
   
 }
   
