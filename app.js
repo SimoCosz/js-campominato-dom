@@ -6,6 +6,7 @@ const hard = document.getElementById('hard').value;
 const crazy = document.getElementById('crazy').value;
 const grid = document.querySelector('.grid');
 let result = 0;
+let punteggio = document.querySelector('.punteggio');
 let risultato = document.querySelector('.risultato');
 let squareElement;
 let numero = 0;
@@ -45,9 +46,10 @@ function gridCallBack(event){
     console.log(result)
     if (result == Math.pow(numeroColonne, 2) - 16 ){
       endGame();
-      console.log('hai vinto')
     }
   }
+  punteggio.innerHTML = '';
+  punteggio.append(`il tuo punteggio: ${result}`);
 }
 
 function endGame(){
@@ -85,11 +87,6 @@ function createNumeroBombe(){
   console.log(numeroBombe)
 }
 
-function controlloBombe (){
-  // if (!numeroBombe.includes(element) )
-  
-} 
-
 // GAME
 
 function startGame(){
@@ -98,7 +95,7 @@ function startGame(){
   createSquareElement();
   createNumeroBombe();
   grid.addEventListener('click', gridCallBack);
-  controlloBombe();
+
   
 }
   

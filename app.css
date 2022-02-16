@@ -93,6 +93,13 @@ img{
   color: white;
 }
 
+.punteggio{
+  position: absolute;
+  bottom: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 /* footer  */
 
 footer{
