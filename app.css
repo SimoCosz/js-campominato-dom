@@ -1,0 +1,103 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html{
+  font-family: 'Varela Round', sans-serif;
+}
+
+img{
+  width: 100%;
+}
+/* STILI */
+/* Header */
+.container{
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #eee;
+}
+
+.logo{
+  width: 30px;
+  border-radius: 20px;
+  margin: 10px 0;
+}
+
+#choose-difficulty{
+  width: 100px;
+  border-radius: 999999px;
+  cursor: pointer;
+}
+
+#play{
+  padding: 5px 20px;
+  background-color: #333;
+  color: white;
+  border-radius: 999999999px;
+  margin-left: 20px;
+  cursor: pointer;
+}
+
+/* main */
+
+.grid-wrapper{
+  min-height: 550px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #7FFFD4;
+}
+
+.grid{
+  width: 400px;
+  max-height: 400px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+.square{
+  display: flex;
+  aspect-ratio: 1/1;
+  border-left: 2px solid #EFEEF0;
+  border-top: 2px solid #EFEEF0;
+  border-right: 2px solid #716F71;
+  border-bottom: 2px solid #716F71;
+  background-color: #D2D1D3;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 15px;
+  cursor: default;
+}
+
+.square-select{
+  background-color: #2E56DA;
+  border-left: 2px solid #789EFD;
+  border-top: 2px solid #789EFD;
+  border-right: 2px solid #06187A;
+  border-bottom: 2px solid #06187A;
+  color: white;
+}
+
+/* footer  */
+
+footer{
+  background-color: #eee;
+}
+
+.made{
+  padding: 15px;
+  text-decoration: underline;
+  color: #333;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.made span{
+  color: red;;
+}
