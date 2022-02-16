@@ -9,6 +9,7 @@ let squareElement;
 let numero = 0;
 let numeroRighe = 0;
 let numeroColonne = 0;
+let numeroBombe = []
 
 
 // FUNZIONI
@@ -56,12 +57,21 @@ function getRandomIntInclusive(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
+function createNumeroBombe(){
+  numeroBombe = []
+  while (numeroBombe.length < 16){
+    let numeroBomba = getRandomIntInclusive(1, Math.pow(numeroColonne, 2))
+    numeroBombe.push(numeroBomba)
+  }
+  console.log(numeroBombe)
+}
 
 function startGame(){
   difficultyGrid();
   grid.innerHTML='';
   createSquareElement();
-
+  createNumeroBombe();
+  
 }
   
 
