@@ -5,6 +5,8 @@ const easy = document.getElementById('easy').value;
 const hard = document.getElementById('hard').value;
 const crazy = document.getElementById('crazy').value;
 const grid = document.querySelector('.grid');
+let result = 0;
+let risultato = document.querySelector('.risultato');
 let squareElement;
 let numero = 0;
 let numeroRighe = 0;
@@ -32,16 +34,24 @@ function difficultyGrid(){
     }
 }
 
-function cellaCallBack(){
-  let element = this.innerHTML;
-  if (numeroBombe.includes(parseInt(element))){
-    this.classList.add('square-boom');
-  } else {
-    this.classList.add('square-select');
+function gridCallBack(event){
+  const newElement = event.target;
+  if (numeroBombe.includes(parseInt(newElement.innerHTML))){
+    newElement.classList.add('square-boom');
+    endGame();
+  } else if (!newElement.classList.contains('square-select')) {
+    newElement.classList.add('square-select');
+    result = result + 1;
+    console.log(result)
+    if (result == Math.pow(numeroColonne, 2) - 16 ){
+      endGame();
+      console.log('hai vinto')
+    }
   }
-  console.dir(element)
-  this.removeEventListener('click', cellaCallBack)
-  this.classList.remove('event')
+}
+
+function endGame(){
+  grid.removeEventListener('click', gridCallBack);
 }
 
 function createSquareElement (){
@@ -52,8 +62,6 @@ function createSquareElement (){
     grid.append(squareElement);
     numero = i + 1;
     squareElement.append(numero);
-    squareElement.addEventListener('click', cellaCallBack);
-    squareElement.classList.add('event')
   }
 }
 
@@ -89,6 +97,7 @@ function startGame(){
   grid.innerHTML='';
   createSquareElement();
   createNumeroBombe();
+  grid.addEventListener('click', gridCallBack);
   controlloBombe();
   
 }
