@@ -39,21 +39,26 @@ function gridCallBack(event){
   const newElement = event.target;
   if (numeroBombe.includes(parseInt(newElement.innerHTML))){
     newElement.classList.add('square-boom');
-    endGame();
+    endGameLose();
   } else if (!newElement.classList.contains('square-select')) {
     newElement.classList.add('square-select');
     result = result + 1;
-    console.log(result)
     if (result == Math.pow(numeroColonne, 2) - 16 ){
-      endGame();
+      endGameWin();
     }
   }
-  punteggio.innerHTML = '';
-  punteggio.append(`il tuo punteggio: ${result}`);
 }
 
-function endGame(){
+function endGameLose(){
   grid.removeEventListener('click', gridCallBack);
+  punteggio.innerHTML = '';
+  punteggio.append(`Mi dispiace, HAI PERSO: il tuo punteggio: ${result}`);
+}
+
+function endGameWin(){
+  grid.removeEventListener('click', gridCallBack);
+  punteggio.innerHTML = '';
+  punteggio.append(`HAI VINTO: il tuo punteggio: ${result}`);
 }
 
 function createSquareElement (){
@@ -95,6 +100,9 @@ function startGame(){
   createSquareElement();
   createNumeroBombe();
   grid.addEventListener('click', gridCallBack);
+  punteggio.innerHTML = '';
+  result = 0
+
 
   
 }
