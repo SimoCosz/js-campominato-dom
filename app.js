@@ -40,11 +40,13 @@ function gridCallBack(event){
   if (numeroBombe.includes(parseInt(newElement.innerHTML))){
     newElement.classList.add('square-boom');
     endGameLose();
+    revealBomb();
   } else if (!newElement.classList.contains('square-select')) {
     newElement.classList.add('square-select');
     result = result + 1;
     if (result == Math.pow(numeroColonne, 2) - 16 ){
       endGameWin();
+      revealBomb();
     }
   }
 }
@@ -52,13 +54,14 @@ function gridCallBack(event){
 function endGameLose(){
   grid.removeEventListener('click', gridCallBack);
   punteggio.innerHTML = '';
-  punteggio.append(`Mi dispiace, HAI PERSO: il tuo punteggio: ${result}`);
+  punteggio.style.display = 'block';
+  punteggio.append(`Mi dispiace, HAI PERSO. il tuo punteggio: ${result}`);
 }
 
 function endGameWin(){
   grid.removeEventListener('click', gridCallBack);
   punteggio.innerHTML = '';
-  punteggio.append(`HAI VINTO: il tuo punteggio: ${result}`);
+  punteggio.append(`HAI VINTO! il tuo punteggio: ${result}`);
 }
 
 function createSquareElement (){
@@ -92,6 +95,15 @@ function createNumeroBombe(){
   console.log(numeroBombe)
 }
 
+function revealBomb(){
+  let numeroCell = document.getElementsByClassName('square')
+  for (let i = 0; i < numeroCell.length; i++){
+    if (numeroBombe.includes(parseInt(numeroCell[i].innerHTML))){
+      numeroCell[i].classList.add('suqare-boom')
+    }
+  }
+}
+
 // GAME
 
 function startGame(){
@@ -101,6 +113,7 @@ function startGame(){
   createNumeroBombe();
   grid.addEventListener('click', gridCallBack);
   punteggio.innerHTML = '';
+  punteggio.style.display = 'none'
   result = 0
 
 
